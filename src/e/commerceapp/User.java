@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Boss
  */
 public class User {
+    private CreditCard x;
     private String username;
     private String name;
     private String surname;
@@ -21,6 +22,7 @@ public class User {
     private String workAddresse;
     private ArrayList orderedProducts;
     private ArrayList favoriteProducts;
+    private ArrayList ownCreditCards;
 
     public User(String username, String name, String surname, String dateOfBirth, String password, String email, String homeAddresse,
             String workAddresse) {
@@ -33,16 +35,38 @@ public class User {
         this.email = email;
         this.homeAddresse = homeAddresse;
         this.workAddresse = workAddresse;
-        this.orderedProducts =  orderedProducts;
+        //this.orderedProducts =  orderedProducts;
         //this.favoriteProducts = favoriteProducts;
         this.orderedProducts =  new ArrayList<Product>();
         this.favoriteProducts = new ArrayList<Product>();
-        this.favoriteProducts = favoriteProducts;
+        //this.favoriteProducts = favoriteProducts;
+        //this.ownCreditCards = new ArrayList<CreditCard>();
     }
         public void addFavoriteProducts(Product a){
-        this.favoriteProducts.add(a);
+        this.favoriteProducts.add(a.getProductName());
     }
-    
+        public void addOrderedProducts(Product a){
+            this.orderedProducts.add(a.getProductName());
+        }
+        
+        public void showOrderedProducts(Product a){
+        //this.favoriteProducts.add(a);
+                    System.out.println(a.getProductName());
+        //a.getProductName();
+    }
+        public void showFavoriteProducts(Product a){
+        //this.favoriteProducts.add(a);
+                    System.out.println(a.getProductName());
+        //a.getProductName();
+    }
+        public void shoppingProduct(Product a,int amount){
+            if (a.isEnough(amount)){
+            addOrderedProducts(a);
+            a.orderingProduct(amount);
+            }
+        }
+        
+        
         public void lookat(){
             System.out.println("Username : "+ getUsername());
             System.out.println("Name :"+getName());
@@ -53,10 +77,11 @@ public class User {
             System.out.println("Home Address :"+getHomeAddresse());
             System.out.println("Work Address :"+getWorkAddresse());
             System.out.println("Ordered Products :"+getOrderedProducts());
-            for(int i=0;i<this.favoriteProducts.size();i++){
+            //for(int i=0;i<this.favoriteProducts.size();i++){
             System.out.println("Favorite Products :"+getFavoriteProducts());
-            System.out.println(this.favoriteProducts.get(i));
-        }
+            //System.out.println(this.favoriteProducts.get(i));
+            
+        //}
             
         }
 
@@ -146,6 +171,14 @@ public class User {
 
     public void setFavoriteProducts(ArrayList favoriteProducts) {
         this.favoriteProducts = favoriteProducts;
+    }
+
+    public ArrayList getOwnCreditCards() {
+        return ownCreditCards;
+    }
+
+    public void setOwnCreditCards(ArrayList ownCreditCards) {
+        this.ownCreditCards = ownCreditCards;
     }
         
 }

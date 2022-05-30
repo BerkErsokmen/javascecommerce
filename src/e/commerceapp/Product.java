@@ -15,6 +15,7 @@ public class Product {
     private int productStockInformation; 
     private double productWeight;
     private String productDescriptionInformation;
+    Product toString;
 
     public Product(String productName, String productColor, String productCategory, int productStockInformation, double productWeight, 
             String productDescriptionInformation) {
@@ -25,14 +26,17 @@ public class Product {
         this.productWeight = productWeight;
         this.productDescriptionInformation = productDescriptionInformation;
     }
-    public Product(String productName){
-        this.productName = productName;
+
+    public boolean isEnough(int amount){
+        return (this.productStockInformation)>= amount;
     }
-    
-    public void orderingProduct(){
-        
+    public void orderingProduct(int amount){
+        if((amount)<=productStockInformation){
+            this.productStockInformation -=amount;
+        }
     }
 
+   
     public void lookat(){
         System.out.println("productName : "+ getProductName());
         System.out.println("productColor : "+ getProductColor());
